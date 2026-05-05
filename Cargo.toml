@@ -1,0 +1,30 @@
+[package]
+name = "wiim-tui"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "Keyboard-driven terminal UI for WiiM (LinkPlay) audio streamers."
+repository = "https://github.com/sdistefano/wiim-tui"
+readme = "README.md"
+
+[dependencies]
+ratatui = "0.29"
+crossterm = "0.28"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "sync", "time", "signal"] }
+color-eyre = "0.6"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tracing-appender = "0.2"
+directories = "5"
+clap = { version = "4", features = ["derive"] }
+wiim_api = "0.1"
+# wiim_api uses reqwest internally; we pull it in directly for the few
+# endpoints (switchmode, MCUKeyShortClick) it doesn't expose. Default
+# features → native-tls, matching wiim_api so we don't double the TLS stack.
+reqwest = "0.12"
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+
+[profile.release]
+lto = "thin"
+strip = true

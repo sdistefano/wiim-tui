@@ -1,0 +1,8 @@
+/target
+
+# AUR build artefacts — only PKGBUILD is tracked.
+/pkg/src/
+/pkg/pkg/
+/pkg/*.tar.gz
+/pkg/*.tar.zst
+*.pkg.tar.zst
